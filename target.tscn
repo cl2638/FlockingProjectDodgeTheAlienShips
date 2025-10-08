@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://be3txngwh2yqm"]
+
+[ext_resource type="Script" uid="uid://cfv2vtrxqkw2t" path="res://Target.cs" id="1_t2jmu"]
+
+[node name="Target" type="RigidBody2D"]
+script = ExtResource("1_t2jmu")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(4.66698, -77.3333, -39, -54, 1, 0, 54, -51)
+uv = PackedVector2Array(-168, -64, -300.666, 3.33334, -173.333, 52.6667, -66.6664, -14.6667)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -21.0804)
+scale = Vector2(1, 0.793936)
+polygon = PackedVector2Array(-38, -51.5402, 2, -72, 50, -42.7234, 0, 29, -36, -32.647)
+disabled = true

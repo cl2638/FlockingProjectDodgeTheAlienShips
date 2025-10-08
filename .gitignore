@@ -1,0 +1,10 @@
+# Godot
+.export/
+.import/
+.bin/
+*.import
+*.godot
+*.mono
+*.csproj
+*.sln
+

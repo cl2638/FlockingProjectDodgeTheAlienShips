@@ -1,0 +1,100 @@
+[gd_scene load_steps=15 format=3 uid="uid://ces1lwmn8ld3h"]
+
+[ext_resource type="Script" uid="uid://wu27b8csuq5s" path="res://PlayerRocket.cs" id="1_nn20g"]
+[ext_resource type="PackedScene" uid="uid://cebj5dq6ugwrg" path="res://explosion.tscn" id="2_4nw8w"]
+[ext_resource type="Texture2D" uid="uid://7kg1jujt80re" path="res://toppng.com-rocket-ship-sprite-sheet-396x308.png" id="2_nn20g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nn20g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nn20g"]
+atlas = ExtResource("2_nn20g")
+region = Rect2(0, 324, 208, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nw8w"]
+atlas = ExtResource("2_nn20g")
+region = Rect2(208, 324, 208, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3clu"]
+atlas = ExtResource("2_nn20g")
+region = Rect2(416, 324, 208, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqifc"]
+atlas = ExtResource("2_nn20g")
+region = Rect2(624, 324, 208, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggdup"]
+atlas = ExtResource("2_nn20g")
+region = Rect2(0, 0, 208, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0iqg"]
+atlas = ExtResource("2_nn20g")
+region = Rect2(208, 0, 208, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q58yp"]
+atlas = ExtResource("2_nn20g")
+region = Rect2(416, 0, 208, 324)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gfv7"]
+atlas = ExtResource("2_nn20g")
+region = Rect2(624, 0, 208, 324)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v0iqg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nn20g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nw8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3clu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqifc")
+}],
+"loop": true,
+"name": &"fired",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggdup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0iqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q58yp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gfv7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nw8w"]
+size = Vector2(106, 127)
+
+[node name="PlayerRocket" type="CharacterBody2D"]
+position = Vector2(781, 484)
+script = ExtResource("1_nn20g")
+ExplosionScene = ExtResource("2_4nw8w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nn20g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
+sprite_frames = SubResource("SpriteFrames_v0iqg")
+animation = &"idle"
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(1, -16.5)
+shape = SubResource("RectangleShape2D_4nw8w")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://brnxh4cxlbwhv"]
+
+[ext_resource type="PackedScene" uid="uid://ces1lwmn8ld3h" path="res://Target1.tscn" id="1_pywaf"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="PlayerRocket" parent="." instance=ExtResource("1_pywaf")]

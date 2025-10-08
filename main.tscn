@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3e5mrwgik40y"]
+
+[ext_resource type="Script" uid="uid://birk0ivck7bb" path="res://Flock.cs" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dht62tkwoki23" path="res://Boid.tscn" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://oh8oikyitkog" path="res://assets/space.png" id="4_lquwl"]
+[ext_resource type="FontFile" uid="uid://duy83xglnns54" path="res://assets/PixelOperator8.ttf" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://l0jk3tjaym6e" path="res://HUD.cs" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://dpnbc28aqhnhb" path="res://RocketScene.tscn" id="6_272bh"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_h2yge"]
+vertices = PackedVector2Array(792.172, 302.961, 379.031, 261.25, 153.688, 137.711, 544.008, 124, 1055.89, 130, 1249.93, 270.406, 1371.13, 132.961, 1469.57, 221.094, 129.008, 669.172, 132.891, 249.773, 246.25, 268.523, 255.063, 558.18, 318.289, 706.773, 200.797, 853.906, 1295.34, 841.023, 756.344, 722.023, 1260.34, 670.094, 1463.64, 747.313, 1446.97, 465.828, 1280.08, 409.297)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(8, 11, 12, 13), PackedInt32Array(14, 13, 12, 15), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 17, 16, 19), PackedInt32Array(7, 18, 19, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(117, 129, 544, 114, 1056, 120, 1375, 123, 1480, 217, 1457, 466, 1474, 753, 1298, 851, 194, 864, 119, 671, 123, 238, 256, 260, 265, 556, 325, 697, 756, 712, 1251, 661, 1270, 410, 1242, 281, 792, 313, 376, 271)])
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_0xm2m")
+BoidScene = ExtResource("2_0xm2m")
+
+[node name="Background" type="Parallax2D" parent="."]
+scale = Vector2(0.99811655, 1)
+scroll_scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(796, 477)
+scale = Vector2(7.0847993, 4.2758827)
+texture = ExtResource("4_lquwl")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_h2yge")
+
+[node name="InstructionsLabel" type="Label" parent="."]
+offset_left = 45.000015
+offset_top = 136.99997
+offset_right = 369.0
+offset_bottom = 209.99997
+scale = Vector2(0.96000075, 1.0799999)
+theme_override_fonts/font = ExtResource("5_lquwl")
+text = "Go Left: Left Arrow or A
+Go Right: Right Arrow or D
+Up: Up Arrow, W, or Space
+Down: Down Arrow or S"
+
+[node name="GameLabel" type="Label" parent="."]
+offset_left = 399.00003
+offset_top = 73.0
+offset_right = 779.0
+offset_bottom = 96.0
+scale = Vector2(1.9599977, 3.7199988)
+theme_override_fonts/font = ExtResource("5_lquwl")
+text = "Dodge the Flock of Alien Ships!"
+
+[node name="HowLongLabel" type="Label" parent="."]
+offset_left = 6.0
+offset_top = 804.0
+offset_right = 329.99997
+offset_bottom = 827.0
+scale = Vector2(0.9599992, 2.44)
+theme_override_fonts/font = ExtResource("5_lquwl")
+text = "How Long Can You Last?"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("6_7mycd")
+
+[node name="TimerLabel" type="Label" parent="HUD"]
+offset_left = 25.000002
+offset_top = 828.00006
+offset_right = 55.0
+offset_bottom = 851.00006
+scale = Vector2(3.3200006, 2.135)
+
+[node name="RocketRoot" parent="." instance=ExtResource("6_272bh")]
